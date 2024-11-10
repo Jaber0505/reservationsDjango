@@ -9,6 +9,7 @@ from django.contrib import messages
 from .forms import UserSignUpForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth import login, logout
 
 class UserUpdateView(UserPassesTestMixin, UpdateView):
     model = User
@@ -48,3 +49,11 @@ def profile(request):
         "user_language" : languages[request.user.usermeta.langue],
     })
 
+@login_required
+def delete(request, user_id):
+    if request.method == 'POST':
+        user = User.objects.get(id=request.user.id)
+        user.delete()
+
+        logout(request)
+        return redirect('home')
