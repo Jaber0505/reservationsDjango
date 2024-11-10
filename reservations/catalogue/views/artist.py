@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import Http404
 
 from catalogue.models import Artist
-from catalogue.forms.ArtistForm import ArtistForm
+from catalogue.forms import ArtistForm
 
 # Create your views here.
 def index(request):
@@ -26,6 +26,20 @@ def show(request, artist_id):
 		'artist':artist,
 		'title':title 
 	})
+
+def create(request):
+	form = ArtistForm(request.POST or None)
+	
+	if request.method == 'POST':
+		if form.is_valid():
+			form.save()
+			
+			return redirect('catalogue:artist-index')
+
+	return render(request, 'artist/create.html', {
+		'form' : form,
+	})
+
 
 def edit(request, artist_id):
 	# fetch the object related to passed id
