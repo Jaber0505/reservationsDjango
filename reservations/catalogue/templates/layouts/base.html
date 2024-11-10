@@ -6,6 +6,15 @@
     </head>
 
     <body>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Accueil</a></li>
+                <li><a href="{% url 'catalogue:artist-index' %}">Nos artistes</a></li>
+                {% if request.user.is_superuser %}
+                    <li><a href="{% url 'admin:index' %}">Administration</a></li>
+                {% endif %}
+            </ul>
+        </nav>
         <div class="container">
             <header>
                 <div style="float:right">
