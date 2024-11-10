@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group
 from catalogue.models import UserMeta
 from django.db import models
 
-class SignUpForm(UserCreationForm):
+class UserSignUpForm(UserCreationForm):
     class Language(models.TextChoices):
         NONE = "", "Choisissez votre langue"
         FRENCH = "fr", "Français"
