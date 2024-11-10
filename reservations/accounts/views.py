@@ -1,12 +1,28 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import UserPassesTestMixin
+from .forms import UserUpdateForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from .forms import UserSignUpForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
+class UserUpdateView(UserPassesTestMixin, UpdateView):
+    model = User
+    form_class = UserUpdateForm
+    success_url = reverse_lazy("accounts:user-profile")
+    template_name = "user/update.html"
+
+    def test_func(self):
+        pkInURL = self.kwargs['pk']
+        return self.request.user.is_authenticated and self.request.user.id==pkInURL or self.request.user.is_superuser
+
+    def handle_no_permission(self):
+        messages.error(self.request, "Vous n'avez pas l'autorisation d'accéder à cette page!")
+        return redirect('accounts:user-profile')
 
 class UserSignUpView(UserPassesTestMixin, CreateView):
     form_class = UserSignUpForm
@@ -28,7 +44,7 @@ def profile(request):
         "nl": "Nederlands",
     }
 
-    return render(request, 'profile.html', {
+    return render(request, 'user/profile.html', {
         "user_language" : languages[request.user.usermeta.langue],
     })
 
