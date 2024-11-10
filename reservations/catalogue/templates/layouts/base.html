@@ -21,7 +21,6 @@
                     {% if request.user.is_authenticated %}
                         <p>Bonjour {{ request.user.username }}!</p>
                         <p><a href="{% url 'accounts:user-profile' %}">Mon profil</a></p>
-                    
                         <form action="{% url 'logout' %}" method="post">
                             {% csrf_token %}
                             <button type="submit">Se déconnecter</button>
