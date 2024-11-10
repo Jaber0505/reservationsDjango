@@ -1,13 +1,7 @@
 """reservations.catalogue URL Configuration
 """
 from django.urls import path
-from django.contrib import admin
-
 from . import views
-from .models import Artist
-
-# Register your models here.
-admin.site.register(Artist)
 
 app_name='catalogue'
 
