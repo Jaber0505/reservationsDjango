@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, redirect, get_object_or_404
 from django.http import Http404
 
 from catalogue.models import Artist
