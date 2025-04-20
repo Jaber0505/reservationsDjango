@@ -1,0 +1,16 @@
+# Dossier VS
+.vs/
+
+# Environnement virtuel
+.virtualenvs/
+
+# Fichiers de base de données
+*.sqlite3
+
+# Fichiers Python compilés
+__pycache__/
+*.pyc
+
+# Fichiers système
+.DS_Store
+Thumbs.db
