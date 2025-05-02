@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=ym-b^3qxt)93c^6*ug17lvc_rp)zsu=m#h4!oci*dac@p%$45'
+SECRET_KEY = 'django-insecure-!niu9obu6mepwwy5=8vkhyp8h&b2xh)yqvr^734y82wgk!miav'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'catalogue',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -74,8 +77,12 @@ WSGI_APPLICATION = 'reservations.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'reservations',
+        'USER': 'root',
+        'PASSWORD': 'jaberyoussef2010',
+        'HOST': 'localhost',
+        'PORT': '3306',  # Le port par défaut pour MySQL
     }
 }
 
