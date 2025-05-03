@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Fiche d’un artiste{% endblock %}
+
+{% block content %}
+    <h2>{{ artist.firstname }} {{ artist.lastname }}</h2>
+    <nav>
+        <a href="{% url 'catalogue:artist-edit' artist.id %}">Modifier</a> 
+        <br>
+        <form method="post" action="{% url 'catalogue:artist-delete' artist.id %}" 
+            onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet artiste ?');">
+            {% csrf_token %}
+            <button>🗑️ Supprimer</button>
+        </form>
+        <br>
+        <a href="{% url 'catalogue:artist-index' %}">Retour à l’index</a>
+    </nav>
+{% endblock %}
