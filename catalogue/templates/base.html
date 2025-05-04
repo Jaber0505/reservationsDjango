@@ -8,22 +8,25 @@
     <header>
         <div style="float: right;">
             {% if request.user.is_authenticated %}
-                <a href="{% url 'accounts:user-profile' %}">Mon profil</a> |
+                <li><a href="{% url 'accounts:user-profile' %}">Mon profil</a> |
                 <form method="post" action="{% url 'logout' %}" style="display:inline;">
                     {% csrf_token %}
                     <button type="submit">Se déconnecter</button>
                 </form>
                 {% if user.is_staff %}
-                    <a href="{% url 'admin:index' %}">Administration</a>
+                    <li><a href="{% url 'admin:index' %}">Administration</a>
                 {% endif %}
             {% else %}
-                <a href="{% url 'login' %}">Se connecter</a> |
-                <a href="{% url 'accounts:user-signup' %}">S'inscrire</a>
+                <li><a href="{% url 'login' %}">Se connecter</a> |
+                <li><a href="{% url 'accounts:user-signup' %}">S'inscrire</a>
             {% endif %}
   
         <nav>
-            <a href="/">Accueil</a>
-            <a href="{% url 'catalogue:artist-index' %}">Artistes</a>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="{% url 'catalogue:artist-index' %}">Artistes</a></li>
+            <li><a href="{% url 'catalogue:type-index' %}">Types</a></li>
+            <li><a href="{% url 'catalogue:locality-index' %}">Localités</a></li>
+            <li><a href="{% url 'catalogue:price-index' %}">Tarifs</a></li> 
         </nav>
     </header>
 

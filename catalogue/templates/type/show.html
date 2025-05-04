@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Détail du type{% endblock %}
+
+{% block content %}
+    <h2>Détail du type</h2>
+    <p>Nom du type : <strong>{{ type.type }}</strong></p>
+    <a href="{% url 'catalogue:type-index' %}">← Retour à la liste</a>
+{% endblock %}
