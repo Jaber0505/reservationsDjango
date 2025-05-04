@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block content %}
+    <h2>Mon profil</h2>
+    <ul>
+        <li>Nom d'utilisateur : {{ user.username }}</li>
+        <li>Prénom : {{ user.first_name }}</li>
+        <li>Nom : {{ user.last_name }}</li>
+        <li>Email : {{ user.email }}</li>
+    </ul>
+
+    <a href="{% url 'accounts:user-update' user.id %}">
+        <button>Modifier mon profil</button>
+    </a>
+    <form action="{% url 'accounts:user-delete' user.id %}" method="post" onsubmit="return confirm('Confirmer la suppression de votre compte ?');">
+        {% csrf_token %}
+        <button type="submit" style="color: red;">Supprimer mon compte</button>
+    </form>
+{% endblock %}

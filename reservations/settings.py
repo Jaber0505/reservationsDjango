@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'accounts', 
     'catalogue',
     'rest_framework',
 ]
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'reservations.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,6 +87,13 @@ DATABASES = {
     }
 }
 
+# Redirections liées à l'authentification
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/catalogue/artist'
+LOGOUT_REDIRECT_URL = '/'
+
+# Création de mail factice
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
