@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from catalogue.models import Type
+
+from catalogue.models.type import Type
 
 # Affiche la liste de tous les types
 def index(request):

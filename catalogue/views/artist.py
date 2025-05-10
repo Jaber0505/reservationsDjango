@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from catalogue.forms import ArtistForm
-from catalogue.models import Artist
+from catalogue.models.artist import Artist
 from accounts.permissions import group_required
 
 # Affiche la liste de tous les artistes

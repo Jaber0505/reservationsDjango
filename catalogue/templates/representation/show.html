@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+  <h1>Représentation</h1>
+  <p><strong>Spectacle :</strong> {{ representation.show.title }}</p>
+  <p><strong>Date & heure :</strong> {{ representation.schedule|date:"d/m/Y H:i" }}</p>
+  <p><strong>Lieu :</strong> {{ representation.location.designation }}</p>
+  <a href="{% url 'catalogue:representation-index' %}">Retour à la liste</a>
+{% endblock %}

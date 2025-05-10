@@ -30,20 +30,6 @@
             "firstname": "Jab",
             "lastname": "Bo"
         }
-    },
-    { 
-        "model": "catalogue.artist", 
-        "pk": 1, 
-        "fields": { 
-            "firstname": "Robert", 
-            "lastname": "Marley" } 
-    },
-    { 
-        "model": "catalogue.artist", 
-        "pk": 1, 
-        "fields": { 
-            "firstname": "BOB", 
-            "lastname": "MARLEY" } 
     }
   ]
   

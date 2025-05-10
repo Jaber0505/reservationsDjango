@@ -1,5 +1,6 @@
 from django import forms
-from catalogue.models import Artist
+
+from catalogue.models.artist import Artist
 
 class ArtistForm(forms.ModelForm):
     class Meta:

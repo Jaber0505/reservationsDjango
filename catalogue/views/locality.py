@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import Http404
 
-from catalogue.models import Locality
+from catalogue.models.locality import Locality
 
 def index(request):
     localities = Locality.objects.all()

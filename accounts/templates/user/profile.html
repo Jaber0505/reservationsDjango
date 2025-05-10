@@ -1,4 +1,4 @@
-{% extends "layouts/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}Profil{% endblock title %}
 
@@ -43,5 +43,6 @@
         </tbody>
     </table>
 
-    <p><code>{{ user.reservations.all }}</code></p>
+    <!-- DEBUG POUR CONNAITRE LES RESERVATIONS-->
+    <!-- <p><code>{{ user.reservations.all }}</code></p> -->
 {% endblock content %}

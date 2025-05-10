@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<h1>{{ title }}</h1>
+<ul>
+  {% for r in reviews %}
+    <li>
+      <a href="{% url 'catalogue:review-show' r.id %}">
+        {{ r.user.username }} – {{ r.show.title }} ({{ r.rating }}/5)
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

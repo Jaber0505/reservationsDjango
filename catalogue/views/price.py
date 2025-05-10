@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import Http404
 
-from catalogue.models import Price
+from catalogue.models.price import Price
 
 def index(request):
     prices = Price.objects.all()

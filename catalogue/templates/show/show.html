@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<h1>{{ show.title }}</h1>
+<p><strong>Créé en :</strong> {{ show.created_in }}</p>
+<p><strong>Lieu :</strong>
+  {% if show.location %}
+    <a href="{% url 'catalogue:location-show' show.location.id %}">{{ show.location.designation }}</a>
+  {% else %}
+    Non défini
+  {% endif %}
+</p>
+<h3>Représentations</h3>
+<ul>
+  {% for rep in show.representations.all %}
+    <li>
+      <a href="{% url 'catalogue:representation-show' rep.id %}">
+        {{ rep.schedule|date:"d/m/Y H:i" }}
+      </a>
+    </li>
+  {% empty %}
+    <li>Aucune représentation prévue</li>
+  {% endfor %}
+</ul>
+<p><a href="{% url 'catalogue:show-index' %}">← Retour aux spectacles</a></p>
+{% endblock %}

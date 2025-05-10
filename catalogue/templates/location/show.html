@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<h1>{{ location.designation }}</h1>
+<p>{{ location.address }}</p>
+<p>{{ location.locality.postal_code }} {{ location.locality.locality }}</p>
+<p><a href="{% url 'catalogue:location-index' %}">← Retour aux lieux</a></p>
+{% endblock %}
