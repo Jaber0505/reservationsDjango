@@ -7,7 +7,9 @@
     <h3>Types :</h3>
     <ul>
         {% for at in artist.artist_types.all %}
-            <li>{{ at.type.type }}</li>
+            <li>
+                <a href="{% url 'catalogue:type-show' type_id=at.type.id %}">{{ at.type.type }}</a>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}

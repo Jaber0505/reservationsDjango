@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Détails du Show{% endblock %}
+
+{% block content %}
+    <h2>{{ show.title }}</h2>
+    <p><strong>Description:</strong> {{ show.description }}</p>
+    <p><strong>Durée:</strong> {{ show.duration }} minutes</p>
+
+    <h3>Prix associés :</h3>
+    <ul>
+        {% for price in prices %}
+            <li>{{ price.type }} : {{ price.price }} €</li>
+        {% empty %}
+            <li>Aucun prix associé.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'catalogue:show-show' show.id %}">Retour à la liste des shows</a>
+{% endblock %}

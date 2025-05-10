@@ -1,4 +1,5 @@
 from django.urls import path
+
 from . import views
 
 app_name = 'catalogue'
@@ -22,11 +23,15 @@ urlpatterns = [
     path('representation/', views.representation.index, name='representation-index'),
     path('representation/<int:representation_id>/', views.representation.show, name='representation-show'),
 
+    path('reservation/', views.reservation.reservation_index, name='reservation_index'),
+    path('reservation/<int:reservation_id>/', views.reservation.reservation_detail, name='reservation_detail'),
+
     path('location/', views.location.index, name='location-index'),
     path('location/<int:location_id>/', views.location.show, name='location-show'),
 
     path('show/', views.show_.index, name='show-index'),
     path('show/<int:show_id>/', views.show_.show, name='show-show'),
+    path('showdetail/<int:show_id>/', views.show_detail.detail, name='show-detail'),
 
     path('review/', views.review.index, name='review-index'),
     path('review/<int:review_id>/', views.review.show, name='review-show'),

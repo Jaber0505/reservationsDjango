@@ -19,7 +19,7 @@ class Representation(models.Model):
     )
 
     def __str__(self):
-        return f"{self.show.title} @ {self.schedule}"
+        return f"Representation {self.id}"
 
     class Meta:
         db_table = "representations"

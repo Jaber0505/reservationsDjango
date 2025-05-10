@@ -4,5 +4,13 @@
 {% block content %}
     <h2>Détail du type</h2>
     <p>Nom du type : <strong>{{ type.type }}</strong></p>
+    <h3>Auteurs :</h3>
+    <ul>
+        {% for at in type.artist_types.all %}
+            <li>
+                <a href="{% url 'catalogue:artist-show' artist_id=at.artist.id %}">{{ at.artist }}</a>
+            </li>
+        {% endfor %}
+    </ul>
     <a href="{% url 'catalogue:type-index' %}">← Retour à la liste</a>
 {% endblock %}
