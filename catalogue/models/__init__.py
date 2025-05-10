@@ -7,3 +7,4 @@ from . import reservation
 from . import show
 from . import review
 from . import representation
+from . import artist_type
