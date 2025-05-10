@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}{{ title }}{% endblock %}
+
 {% block content %}
 <h2>Spectacles créés dans ce lieu</h2>
 
@@ -7,8 +8,9 @@
     <ul>
     {% for show in location.shows.all %}
         <li>
-            <a href="{% url 'catalogue:show-show' show.id %}">{{ show.title }}</a>
-            ({{ show.created_in }})
+            <a href="{% url 'catalogue:show-show' show.id %}">
+                {{ show.title }}
+            </a> ({{ show.created_in }})
         </li>
     {% endfor %}
     </ul>
@@ -22,8 +24,8 @@
     <ul>
     {% for rep in location.representations.all %}
         <li>
-            {{ rep.schedule|date:"d/m/Y H:i" }} — 
-            <a href="{% url 'catalogue:show-show' rep.show.id %}">
+            {{ rep.schedule|date:"d/m/Y H:i" }} —
+            <a href="{% url 'catalogue:representation-show' rep.id %}">
                 {{ rep.show.title }}
             </a>
         </li>
@@ -32,6 +34,4 @@
 {% else %}
     <p>Aucune représentation prévue dans ce lieu.</p>
 {% endif %}
-
-
 {% endblock %}
