@@ -1,6 +1,7 @@
 from django.db import models
 
 from catalogue.models.location import Location
+from catalogue.models.price import Price
 
 class ShowManager(models.Manager):
     def get_by_natural_key(self, slug, created_in):
@@ -17,11 +18,15 @@ class Show(models.Model):
     bookable = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
+
+    # Ajout de la relation ManyToMany avec Price
+    prices = models.ManyToManyField(Price, related_name='shows', db_table='show_price')
+
     objects = ShowManager()
 
     def __str__(self):
         return self.title
-    
+
     def natural_key(self):
         return (self.slug, self.created_in)
 

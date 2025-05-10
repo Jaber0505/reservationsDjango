@@ -84,6 +84,9 @@ DATABASES = {
         'PASSWORD': 'jaberyoussef2010',
         'HOST': 'localhost',
         'PORT': '3306',  # Le port par défaut pour MySQL
+        'OPTIONS': {
+            'charset': 'utf8mb4',  # Utilise utf8mb4 pour une compatibilité complète
+        }
     }
 }
 
