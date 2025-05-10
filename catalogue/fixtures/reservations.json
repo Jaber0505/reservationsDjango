@@ -15,7 +15,7 @@
     "pk": 2,
     "fields": {
       "booking_date": "2025-05-04T23:42:12.706Z",
-      "status": "pay├®e",
+      "status": "payée",
       "user": [
         "anna"
       ]
@@ -37,7 +37,7 @@
     "pk": 4,
     "fields": {
       "booking_date": "2025-05-04T23:42:53.303Z",
-      "status": "annul├®e",
+      "status": "annulée",
       "user": [
         "bob"
       ]
@@ -48,7 +48,7 @@
     "pk": 5,
     "fields": {
       "booking_date": "2025-05-04T23:42:53.312Z",
-      "status": "pay├®e",
+      "status": "payée",
       "user": [
         "bob"
       ]
@@ -59,7 +59,7 @@
     "pk": 6,
     "fields": {
       "booking_date": "2025-05-04T23:42:53.318Z",
-      "status": "pay├®e",
+      "status": "payée",
       "user": [
         "anna"
       ]
@@ -70,7 +70,7 @@
     "pk": 7,
     "fields": {
       "booking_date": "2025-05-04T23:58:33.889Z",
-      "status": "pay├®e",
+      "status": "payée",
       "user": [
         "bob"
       ]

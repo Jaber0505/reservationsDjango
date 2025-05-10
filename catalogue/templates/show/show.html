@@ -12,20 +12,17 @@
 </p>
 
 <h2>Critiques du spectacle</h2>
+<ul>
+{% for review in show.reviews.all %}
+    <li>
+        {{ review.user.username }} – {{ review.stars }}/5
+        <p>{{ review.review }}</p>
+    </li>
+{% empty %}
+    <li>Aucune critique disponible.</li>
+{% endfor %}
+</ul>
 
-{% if show.reviews.exists %}
-    <ul>
-    {% for review in show.reviews.all %}
-        <li>
-            <strong>{{ review.user.username }}</strong> – 
-            {{ review.rating }}/5<br>
-            {{ review.comment }}
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>Aucune critique pour ce spectacle.</p>
-{% endif %}
 
 <h2>Représentations programmées</h2>
 

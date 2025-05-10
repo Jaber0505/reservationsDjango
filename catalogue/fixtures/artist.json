@@ -1,35 +1,34 @@
 [
     {
-        "model": "catalogue.artist",
-        "pk": 1,
-        "fields": {
-            "firstname": "Roberto",
-            "lastname": "Marley"
-        }
+      "model": "catalogue.artist",
+      "pk": 1,
+      "fields": {
+        "firstname": "Roberto",
+        "lastname": "Marley"
+      }
     },
     {
-        "model": "catalogue.artist",
-        "pk": 2,
-        "fields": {
-            "firstname": "Amy",
-            "lastname": "Winehouse"
-        }
+      "model": "catalogue.artist",
+      "pk": 2,
+      "fields": {
+        "firstname": "Amy",
+        "lastname": "Winehouse"
+      }
     },
     {
-        "model": "catalogue.artist",
-        "pk": 3,
-        "fields": {
-            "firstname": "Kurt",
-            "lastname": "Cobain"
-        }
+      "model": "catalogue.artist",
+      "pk": 3,
+      "fields": {
+        "firstname": "Kurt",
+        "lastname": "Cobain"
+      }
     },
     {
-        "model": "catalogue.artist",
-        "pk": 4,
-        "fields": {
-            "firstname": "Jab",
-            "lastname": "Bo"
-        }
+      "model": "catalogue.artist",
+      "pk": 4,
+      "fields": {
+        "firstname": "Jab",
+        "lastname": "Bo"
+      }
     }
   ]
-  

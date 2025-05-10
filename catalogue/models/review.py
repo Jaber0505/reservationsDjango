@@ -4,15 +4,17 @@ from django.contrib.auth.models import User
 from catalogue.models.show import Show
 
 class Review(models.Model):
-    show = models.ForeignKey(Show, on_delete=models.CASCADE, related_name='reviews')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
-    rating = models.PositiveSmallIntegerField()  # 1 à 5 par exemple
-    comment = models.TextField(max_length=1000)
+    user = models.ForeignKey(User, on_delete=models.RESTRICT, related_name='reviews')
+    show = models.ForeignKey(Show, on_delete=models.RESTRICT, related_name='reviews')
+    review = models.TextField(null=True, blank=True)
+    stars = models.PositiveSmallIntegerField()
+    validated = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(null=True)
 
     def __str__(self):
-        return f"{self.user.username} – {self.show.title} ({self.rating}/5)"
+        return f"{self.user.username} - {self.show.title} : {self.stars}"
 
     class Meta:
         db_table = "reviews"
-        unique_together = ('show', 'user')  # Un utilisateur ne peut noter qu'une fois un spectacle
+        unique_together = ('show', 'user')

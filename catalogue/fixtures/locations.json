@@ -35,7 +35,7 @@
     "fields": {
       "slug": "opera-house",
       "designation": "Opera House",
-      "address": "Avenue du th├®├ótre 3",
+      "address": "Avenue du théàtre 3",
       "locality": [
         "1040",
         "Etterbeek"
@@ -49,8 +49,8 @@
     "pk": 4,
     "fields": {
       "slug": "espace-delvaux-la-venerie",
-      "designation": "Espace Delvaux / La V├®nerie",
-      "address": "3 rue Grat├¿s",
+      "designation": "Espace Delvaux / La Vénerie",
+      "address": "3 rue Gratés",
       "locality": null,
       "website": "https://www.lavenerie.be",
       "phone": "+32 (0)2/663.85.50"
@@ -92,7 +92,7 @@
     "fields": {
       "slug": "espace-magh",
       "designation": "Espace Magh",
-      "address": "17 rue du Poin├ºon",
+      "address": "17 rue du Poinéon",
       "locality": [
         "1000",
         "Bruxelles"
