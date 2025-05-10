@@ -1,10 +1,20 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
 {% block title %}{{ title }}{% endblock %}
+
 {% block content %}
-<h1>Critique de {{ review.user.username }}</h1>
-<p><strong>Spectacle :</strong> <a href="{% url 'catalogue:show-show' review.show.id %}">{{ review.show.title }}</a></p>
+<h1>Critique</h1>
+
+<p><strong>Spectacle :</strong>
+  <a href="{% url 'catalogue:show-show' review.show.id %}">
+    {{ review.show.title }}
+  </a>
+</p>
+
+<p><strong>Par :</strong> {{ review.user.username }}</p>
 <p><strong>Note :</strong> {{ review.rating }}/5</p>
 <p><strong>Commentaire :</strong><br>{{ review.comment }}</p>
 <p><em>Publié le {{ review.created_at|date:"d/m/Y H:i" }}</em></p>
-<p><a href="{% url 'catalogue:review-index' %}">← Retour à la liste</a></p>
+
+<nav><a href="{% url 'catalogue:review-index' %}">← Retour à la liste</a></nav>
 {% endblock %}
