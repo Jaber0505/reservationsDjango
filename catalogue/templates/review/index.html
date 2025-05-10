@@ -8,7 +8,7 @@
   {% for review in reviews %}
     <li>
       <a href="{% url 'catalogue:review-show' review.id %}">
-        {{ review.user.username }} – {{ review.show.title }} ({{ review.rating }}/5)
+        {{ review.user.username }} – {{ review.show.title }} ({{ review.stars }}/5)
       </a>
     </li>
   {% endfor %}
