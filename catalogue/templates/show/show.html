@@ -38,5 +38,27 @@
     <p>Aucune critique pour ce spectacle.</p>
 {% endif %}
 
+<h2>Représentations programmées</h2>
+
+{% if show.representations.exists %}
+    <ul>
+    {% for rep in show.representations.all %}
+        <li>
+            Le {{ rep.schedule|date:"d/m/Y H:i" }}
+            {% if rep.location %}
+                à <a href="{% url 'catalogue:location-show' rep.location.id %}">
+                    {{ rep.location.designation }}
+                  </a>
+            {% else %}
+                au lieu de création : {{ show.location.designation }}
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucune représentation prévue.</p>
+{% endif %}
+
+
 <p><a href="{% url 'catalogue:show-index' %}">← Retour aux spectacles</a></p>
 {% endblock %}
