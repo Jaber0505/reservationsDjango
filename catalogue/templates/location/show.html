@@ -16,4 +16,22 @@
     <p>Aucun spectacle créé dans ce lieu.</p>
 {% endif %}
 
+<h2>Représentations dans ce lieu</h2>
+
+{% if location.representations.exists %}
+    <ul>
+    {% for rep in location.representations.all %}
+        <li>
+            {{ rep.schedule|date:"d/m/Y H:i" }} — 
+            <a href="{% url 'catalogue:show-show' rep.show.id %}">
+                {{ rep.show.title }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucune représentation prévue dans ce lieu.</p>
+{% endif %}
+
+
 {% endblock %}
