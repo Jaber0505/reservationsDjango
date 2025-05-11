@@ -1,6 +1,8 @@
 from django.urls import path
 
-from . import views
+from catalogue import views
+from catalogue.api.views import ArtistListCreateView, ArtistRetrieveUpdateDestroyView
+from catalogue.api.views import CSRFProtectedPostView
 
 app_name = 'catalogue'
 
@@ -35,4 +37,10 @@ urlpatterns = [
 
     path('review/', views.review.index, name='review-index'),
     path('review/<int:review_id>/', views.review.show, name='review-show'),
+
+    #### API ####
+    path('api/artists/', ArtistListCreateView.as_view(), name='artist-list'),
+    path('api/artists/<int:artist_id>/', ArtistRetrieveUpdateDestroyView.as_view(), name='artist-detail'),
+
+    path('api/test-csrf/', CSRFProtectedPostView.as_view(), name='csrf-test'),
 ]

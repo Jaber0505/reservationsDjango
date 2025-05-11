@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'accounts', 
     'catalogue',
     'rest_framework',
+    'rest_framework.authtoken',
+    'drf_spectacular',
+    'drf_spectacular_sidecar',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +141,45 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# REST Framework authentication & permissions
+# https://www.django-rest-framework.org/api-guide/authentication/
+
+
+# Utilisatation d'une authentification simple
+# 
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.SessionAuthentication',      # via cookies
+#         'rest_framework.authentication.BasicAuthentication',        # pour cURL / Postman
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticatedOrReadOnly',               # bloque tout sauf GET
+#     ]
+# }
+
+# Utilisation d'un token
+# 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.OrderingFilter',
+    ],
+    
+}
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Reservation API',
+    'DESCRIPTION': 'Documentation de l\'API du projet Reservation',
+    'VERSION': '1.0.0',
+}
