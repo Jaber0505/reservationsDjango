@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,15 +84,12 @@ WSGI_APPLICATION = 'reservations.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'reservations',
-        'USER': 'root',
-        'PASSWORD': 'jaberyoussef2010',
-        'HOST': 'localhost',
-        'PORT': '3306',  # Le port par défaut pour MySQL
-        'OPTIONS': {
-            'charset': 'utf8mb4',  # Utilise utf8mb4 pour une compatibilité complète
-        }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
 
