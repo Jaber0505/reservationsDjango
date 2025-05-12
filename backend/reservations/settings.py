@@ -30,7 +30,11 @@ SECRET_KEY = 'django-insecure-!niu9obu6mepwwy5=8vkhyp8h&b2xh)yqvr^734y82wgk!miav
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["reservationsdjango.onrender.com"]
+ALLOWED_HOSTS = [
+    "reservationsdjango.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
@@ -139,7 +143,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+TEMPLATES[0]['DIRS'] = [BASE_DIR / "templates"]
+
+STATIC_URL = "/static/"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "frontend_static",
+]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -192,3 +203,5 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
