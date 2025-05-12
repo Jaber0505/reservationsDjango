@@ -44,12 +44,14 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_spectacular',
     'drf_spectacular_sidecar',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -177,9 +179,14 @@ REST_FRAMEWORK = {
     
 }
 
-
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Reservation API',
     'DESCRIPTION': 'Documentation de l\'API du projet Reservation',
     'VERSION': '1.0.0',
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # ton frontend React
+]
+
+CORS_ALLOW_CREDENTIALS = True

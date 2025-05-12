@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render, redirect
 
-from ..forms import UserUpdateForm
+from accounts.forms import UserUpdateForm
 
 # Vue basée sur une classe pour modifier les informations de l'utilisateur
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.shortcuts import redirect
 
-from ..forms import UserSignUpForm
+from accounts.forms import UserSignUpForm
 
 # Vue basée sur une classe pour gérer l'inscription utilisateur
 class UserSignUpView(UserPassesTestMixin, CreateView):
