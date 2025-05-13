@@ -23,8 +23,8 @@ from catalogue.views.frontend import frontend_view
 urlpatterns = [
     # API classique
     # path('', TemplateView.as_view(template_name='home/home.html'), name='home'),
-    path('', frontend_view),
     path('admin/', admin.site.urls),
+    path('', include('frontend.urls')),
     path('catalogue/', include('catalogue.urls')),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
