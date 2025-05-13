@@ -40,13 +40,11 @@ urlpatterns = [
     path('api/', include(('catalogue.api_urls', 'catalogue'), namespace='catalogue-api')),
 
     # Documentation API
+    # Documentation API
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/schema/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 
-    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('api/schema/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 
     # Gerer les Tokens
     path('accounts/api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
