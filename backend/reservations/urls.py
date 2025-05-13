@@ -18,13 +18,13 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.generic.base import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
-from catalogue.views.frontend import frontend_view
+from catalogue.views import viewIndex
 
 urlpatterns = [
     # API classique
     # path('', TemplateView.as_view(template_name='home/home.html'), name='home'),
     path('admin/', admin.site.urls),
-    path('', include('frontend.urls')),
+    path('', viewIndex.index, name='index'),
     path('catalogue/', include('catalogue.urls')),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),

@@ -53,7 +53,7 @@ MIDDLEWARE = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'frontend' / 'templates'],  # Tu peux personnaliser ce chemin si besoin
+        'DIRS': [os.path.join(BASE_DIR, 'frontend/build')],  # Tu peux personnaliser ce chemin si besoin
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,7 +67,7 @@ TEMPLATES = [
 ]
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'frontend' / 'static']
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend/build/static')]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 ROOT_URLCONF = 'reservations.urls'
