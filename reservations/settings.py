@@ -60,7 +60,7 @@ CORS_ALLOW_CREDENTIALS = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # Tu n'utilises plus React via Django, donc on peut laisser vide
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,6 +72,10 @@ TEMPLATES = [
         },
     },
 ]
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 ROOT_URLCONF = 'reservations.urls'
 WSGI_APPLICATION = 'reservations.wsgi.application'
