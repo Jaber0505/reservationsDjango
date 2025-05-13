@@ -7,11 +7,12 @@ from accounts.serializers.register import RegisterSerializer
 from drf_spectacular.utils import extend_schema
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
+from rest_framework_simplejwt.tokens import RefreshToken
 
 @extend_schema(
     request=RegisterSerializer,
     responses={201: dict, 400: dict},
-    description="Créer un nouvel utilisateur (anonyme autorisé)"
+    description="Créer un nouvel utilisateur et retourner les tokens JWT"
 )
 class RegisterView(APIView):
     permission_classes = [AllowAny]
@@ -19,8 +20,15 @@ class RegisterView(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            return Response({"message": "Utilisateur créé avec succès."}, status=status.HTTP_201_CREATED)
+            user = serializer.save()
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                "message": "Utilisateur créé avec succès.",
+                "access": str(refresh.access_token),
+                "refresh": str(refresh),
+                "username": user.username
+            }, status=status.HTTP_201_CREATED)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginView(APIView):
