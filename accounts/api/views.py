@@ -10,25 +10,18 @@ from rest_framework.authtoken.models import Token
 
 @extend_schema(
     request=RegisterSerializer,
-    responses={201: None, 400: dict},
+    responses={201: dict, 400: dict},
     description="Créer un nouvel utilisateur (anonyme autorisé)"
 )
 class RegisterView(APIView):
     permission_classes = [AllowAny]
-    
+
     def post(self, request):
-        username = request.data.get("username")
-        email = request.data.get("email")
-        password = request.data.get("password")
-
-        if not username or not password:
-            return Response({"error": "Username and password are required."}, status=status.HTTP_400_BAD_REQUEST)
-
-        if User.objects.filter(username=username).exists():
-            return Response({"error": "Username already exists."}, status=status.HTTP_400_BAD_REQUEST)
-
-        user = User.objects.create_user(username=username, email=email, password=password)
-        return Response({"message": "User created successfully."}, status=status.HTTP_201_CREATED)
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Utilisateur créé avec succès."}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginView(APIView):
     permission_classes = [AllowAny]
