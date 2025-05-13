@@ -4,6 +4,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
-        # Ajout du username
+
+        # Ajout du champ username au token
         token['username'] = user.username
         return token
