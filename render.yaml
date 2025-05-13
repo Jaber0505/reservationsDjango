@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: reservationsdjango
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      npm run build --prefix frontend
+      cp -r frontend/build/static/* backend/frontend/static/
+      cp frontend/build/index.html backend/frontend/templates/
+      cp frontend/build/manifest.json backend/frontend/static/
+      cp frontend/build/favicon.ico backend/frontend/static/
+      cp frontend/build/logo192.png backend/frontend/static/
+      python manage.py collectstatic --noinput
+    startCommand: gunicorn reservations.wsgi:application
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: nom-de-ta-bdd
+          property: connectionString
+      - key: DJANGO_SETTINGS_MODULE
+        value: reservations.settings
