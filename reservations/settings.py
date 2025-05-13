@@ -15,6 +15,7 @@ DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = [
     "reservationsdjango.onrender.com",
+    "reservations-react-7mprh891n-jaber0505s-projects.vercel.app",
     "localhost",
     "127.0.0.1",
 ]
@@ -59,6 +60,7 @@ MIDDLEWARE.insert(1, 'corsheaders.middleware.CorsMiddleware')  # juste après Se
 # CORS
 CORS_ALLOWED_ORIGINS = [
     "https://reservations-react-zeta.vercel.app",
+    "https://reservations-react-7mprh891n-jaber0505s-projects.vercel.app",
     "http://localhost:3000",
 ]
 CORS_ALLOW_CREDENTIALS = True
@@ -122,7 +124,6 @@ USE_TZ = True
 
 # Fichiers statiques
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Clé primaire par défaut
