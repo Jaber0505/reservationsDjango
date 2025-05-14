@@ -1,0 +1,23 @@
+[
+  {
+    "model": "catalogues.type",
+    "pk": 1,
+    "fields": {
+      "type": "auteur"
+    }
+  },
+  {
+    "model": "catalogues.type",
+    "pk": 2,
+    "fields": {
+      "type": "scénographe"
+    }
+  },
+  {
+    "model": "catalogues.type",
+    "pk": 3,
+    "fields": {
+      "type": "comédien"
+    }
+  }
+]

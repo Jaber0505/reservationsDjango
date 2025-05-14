@@ -1,0 +1,13 @@
+[
+    {
+      "model": "catalogues.reservationrepresentation",
+      "pk": 1,
+      "fields": {
+        "reservation": 1,
+        "representation": 1,
+        "quantity": 1,
+        "price": "20.00"
+      }
+    }
+]
+    

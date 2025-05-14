@@ -1,1 +1,0 @@
-from .artist_form import ArtistForm

@@ -1,0 +1,12 @@
+from .artist_view import ArtistDetailView, ArtistListCreateView
+from .artist_type_view import ArtistTypeListCreateView
+from .locality_view import LocalityListCreateView
+from .location_view import LocationListCreateView
+from .price_show_view import PriceShowListCreateView
+from .price_view import PriceListCreateView , PriceDetailView
+from .show_view import ShowListCreateView, ShowDetailView
+from .type_view import TypeListCreateView, TypeDetailView
+from .representation_view import RepresentationListCreateView, RepresentationDetailView
+from .reservation_representation_view import ReservationRepresentationListCreateView, ReservationRepresentationDetailView
+from .reservation_view import ReservationListCreateView, ReservationDetailView
+from .review_view import ReviewListCreateView, ReviewDetailView

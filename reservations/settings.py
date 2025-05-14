@@ -30,8 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_filters',
 
+    'catalogues',
     'accounts.apps.AccountsConfig',
-    'catalogue',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -99,11 +99,6 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
-
-# Authentification
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/catalogue/artist'
-LOGOUT_REDIRECT_URL = '/'
 
 # Envoi des mails (console pour développement)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

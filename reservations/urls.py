@@ -36,8 +36,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
 
     # Catalogue
-    path('', include('catalogue.urls')),
-    path('api/', include(('catalogue.api_urls', 'catalogue'), namespace='catalogue-api')),
+    path('catalogues/', include('catalogues.urls')),
 
     # Documentation API
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
