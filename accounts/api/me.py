@@ -20,7 +20,7 @@ class MeView(APIView):
         description="Retourne le prénom, nom, email, username et la date d'inscription de l'utilisateur connecté.",
     )
     def get(self, request):
-        serializer = UserDetailSerializer(request.user)
+        serializer = UserUpdateSerializer(request.user, context={'request': request})
         return Response(serializer.data)
 
     @extend_schema(
@@ -34,7 +34,7 @@ class MeView(APIView):
         description="Permet de modifier le nom, prénom, nom d'utilisateur et adresse email du compte connecté.",
     )
     def put(self, request):
-        serializer = UserUpdateSerializer(request.user, data=request.data, partial=True)
+        serializer = UserUpdateSerializer(request.user, data=request.data, partial=True, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

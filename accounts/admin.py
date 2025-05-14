@@ -1,3 +1,1 @@
-from django.contrib import admin
-
-# Register your models here.
+# Ce fichier permet d'enregistrer les modèles dans l'admin Django (si besoin)

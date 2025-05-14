@@ -1,47 +1,47 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from rest_framework import status
-from drf_spectacular.utils import extend_schema, OpenApiResponse
-
 from django.contrib.auth.models import User
-from accounts.serializers.user import UserUpdateSerializer
+from rest_framework.test import APITestCase
+from rest_framework import status
+from rest_framework_simplejwt.tokens import RefreshToken
 
-class MeView(APIView):
-    permission_classes = [IsAuthenticated]
 
-    @extend_schema(
-        summary="Voir son profil utilisateur",
-        responses={200: UserUpdateSerializer},
-        description="Retourne le profil (username et email) de l'utilisateur connecté."
-    )
-    def get(self, request):
-        serializer = UserUpdateSerializer(request.user)
-        return Response(serializer.data)
+# Tests pour la vue /accounts/api/me/ (profil utilisateur connecté)
+class MeViewTests(APITestCase):
 
-    @extend_schema(
-        summary="Modifier son profil",
-        request=UserUpdateSerializer,
-        responses={
-            200: UserUpdateSerializer,
-            400: OpenApiResponse(description="Données invalides")
-        },
-        description="Met à jour le username et l'email de l'utilisateur connecté."
-    )
-    def put(self, request):
-        serializer = UserUpdateSerializer(request.user, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # Crée un utilisateur et l'authentifie avec un token JWT
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="testuser",
+            email="test@example.com",
+            password="testpass",
+            first_name="Jean",
+            last_name="Dupont"
+        )
+        refresh = RefreshToken.for_user(self.user)
+        self.access_token = str(refresh.access_token)
+        self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.access_token}")
 
-    @extend_schema(
-        summary="Supprimer son compte",
-        responses={
-            204: OpenApiResponse(description="Compte supprimé avec succès"),
-        },
-        description="Supprime définitivement le compte de l'utilisateur connecté."
-    )
-    def delete(self, request):
-        request.user.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    # Vérifie que le profil est bien retourné pour l'utilisateur connecté
+    def test_get_profile(self):
+        response = self.client.get('/accounts/api/me/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['username'], self.user.username)
+        self.assertEqual(response.data['email'], self.user.email)
+
+    # Vérifie que l'utilisateur peut modifier son prénom et email
+    def test_update_profile(self):
+        data = {
+            "first_name": "Nouveau",
+            "last_name": "Nom",
+            "email": "new@example.com"
+        }
+        response = self.client.put('/accounts/api/me/', data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.first_name, "Nouveau")
+        self.assertEqual(self.user.email, "new@example.com")
+
+    # Vérifie que l'utilisateur peut supprimer son compte
+    def test_delete_account(self):
+        response = self.client.delete('/accounts/api/me/')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertFalse(User.objects.filter(pk=self.user.pk).exists())

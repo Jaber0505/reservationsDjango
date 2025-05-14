@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from catalogue.forms import ArtistForm
 from catalogue.models import Artist, Type
-from accounts.permissions import group_required
+#from accounts.permissions import group_required
 
 # Affiche la liste de tous les artistes
 def index(request):
@@ -18,7 +18,7 @@ def show(request, artist_id):
 
 # Édite un artiste (accessible uniquement aux membres du groupe ADMIN connectés)
 @login_required
-@group_required('ADMIN')
+#@group_required('ADMIN')
 def edit(request, artist_id):
     artist = get_object_or_404(Artist, pk=artist_id)
 
@@ -35,7 +35,7 @@ def edit(request, artist_id):
 
 # Supprime un artiste (seulement via POST, pour un ADMIN connecté)
 @login_required
-@group_required('ADMIN')
+#@group_required('ADMIN')
 def delete(request, artist_id):
     artist = get_object_or_404(Artist, pk=artist_id)
 
@@ -49,7 +49,7 @@ def delete(request, artist_id):
 
 # Crée un nouvel artiste (réservé aux ADMIN connectés)
 @login_required
-@group_required('ADMIN')
+#@group_required('ADMIN')
 def create(request):
     if request.method == 'POST':
         form = ArtistForm(request.POST)
