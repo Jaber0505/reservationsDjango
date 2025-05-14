@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from rest_framework.reverse import reverse
 import re
 
 class UserUpdateSerializer(serializers.ModelSerializer):
@@ -32,6 +33,8 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         return value
 
 class UserDetailSerializer(serializers.ModelSerializer):
+    links = serializers.SerializerMethodField()
+
     class Meta:
         model = User
         fields = (
@@ -40,5 +43,14 @@ class UserDetailSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'date_joined',
+            'links',
         )
         read_only_fields = fields
+
+    def get_links(self, obj):
+        request = self.context.get('request')
+        return {
+            "self": reverse("accounts_api:me", request=request),
+            "change_password": reverse("accounts_api:change_password", request=request),
+            "logout": reverse("accounts_api:token_logout", request=request),
+        }
